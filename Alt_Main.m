@@ -3,8 +3,8 @@
 % considering a cuboid domain [-1,1]^3 and then subdivide it into (N-1)^3
 % subcubes. We then iterate the foward Euler process n_iter times.
 
-N = 31;         %Spatial discretisation
-n_iter = 100;   %Number of iterations
+N = 30;         %Spatial discretisation
+n_iter = 200;   %Number of iterations
 x = linspace(-1,1,N);           %1-D domain
                  %Spatial step
 
@@ -48,6 +48,14 @@ end
 u = sum(f,4);
 [X,Y,Z] = meshgrid(x,x,x);
 [Xmat,Ymat] = meshgrid(x,x);
-pcolor(Xmat,Ymat,u(:,:,round(end/2)));
+pcolor(Xmat-((x(2)-x(1))/2),Ymat-((x(2)-x(1))/2),u(:,:,round(end/2)));
+hold on
+plot(0.5*cos(linspace(0,2*pi,101)),0.5*sin(linspace(0,2*pi,101)),'r-')
+hold off
+axis equal
 figure;
-contourslice(X,Y,Z,u,[-0.75,-0.5,-0.25,0,0.25,0.5,0.75],[],[-0.75,-0.5,-0.25,0,0.25,0.5,0.75])
+pcolor(Xmat-((x(2)-x(1))/2),Ymat-((x(2)-x(1))/2),reshape(u(round(end/2),:,:),length(Xmat),length(Xmat)));
+hold on
+plot(0.5*cos(linspace(0,2*pi,101)),0.5*sin(linspace(0,2*pi,101)),'r-')
+hold off
+axis equal

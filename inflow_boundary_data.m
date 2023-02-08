@@ -8,7 +8,10 @@ function [g] = inflow_boundary_data(f,x,S_vec)
         %If S(1) > 0 then BC on x= -1;
         %If S(1) < 0 then BC on x= +1;
         if sign(S_vec(i,1))>0
-            g(1,:,:,i) = 0.01*exp(-(X1.^2+X2.^2));
+            %g(1,:,:,i) = 0.01*exp(-(X1.^2+X2.^2));
+            g(1,:,:,i) = 0.1*(sqrt(X1.^2+X2.^2)<0.2).*(sign(S_vec(i,2))==0).*(sign(S_vec(i,3))==0)...
+                +0.1*(sqrt(X1.^2+(X2-0.7).^2)<0.2).*(sign(S_vec(i,2))==-1).*(sign(S_vec(i,3))==0)...
+                +0.1*(sqrt(X1.^2+(X2+0.7).^2)<0.2).*(sign(S_vec(i,2))==1).*(sign(S_vec(i,3))==0);
         elseif sign(S_vec(i,1))<0
             g(N,:,:,i) = 0;
         end
