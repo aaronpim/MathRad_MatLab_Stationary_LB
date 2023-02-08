@@ -6,12 +6,13 @@
 N = 31;         %Spatial discretisation
 n_iter = 100;   %Number of iterations
 x = linspace(-1,1,N);           %1-D domain
-dx = x(2)-x(1);                 %Spatial step
+                 %Spatial step
 
 %% List of trajectory vectors.
 
 s_vec = combvec([-1,0,1],[-1,0,1],[-1,0,1])'; 
 s_vec = [s_vec(1:13,:);s_vec(15:end,:)]; 
+dx = (x(2)-x(1)).*sqrt(sum(s_vec.^2,2));
 s_vec = s_vec./repmat(sqrt(sum(s_vec.^2,2)),1,3);
 
 
@@ -35,7 +36,7 @@ for n = 1:n_iter
         a3 = matrix_index(s_vec(i,3),N); b3 = matrix_index(-s_vec(i,3),N);
         % This step calculates the indices needed for the finite difference
         % forward Euler method. f(x+ dx*s) = f(x) + dx*col(x)
-        f_temp(a1,a2,a3,i) = f(b1,b2,b3,i)+dx*col(b1,b2,b3);
+        f_temp(a1,a2,a3,i) = f(b1,b2,b3,i)+dx(i)*col(b1,b2,b3);
     end
     % The temporary vector is to ensure that nothing changes as we iterate
     % throught the trajectory vectors.
