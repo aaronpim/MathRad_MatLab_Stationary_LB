@@ -20,8 +20,6 @@ function [g] = two_dim_inflow_boundary_data(f,x,S_vec)
         if S_vec(i,2)==2
             g(N,:,i) = pencil_beam(1,0.7,0.3);
             g(N-1,:,i) = pencil_beam(1,0.7,0.3);
-        elseif S_vec(i,2)==-1
-            g(N,:,i) = pencil_beam(1,-0.7,0.3);
         else
             g(N,:,i) = 0;
         end
