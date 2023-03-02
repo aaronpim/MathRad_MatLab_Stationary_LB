@@ -13,3 +13,4 @@ function [Sctr] = Sigma_s(x,s1,s2)
     Sctr = (R>0.5).*dot(prob_vec_exclusions, s_dot_s==dot(s1,s2))...
          +(R<=0.5).*dot(prob_vec_inclusions, s_dot_s==dot(s1,s2));
 end
+

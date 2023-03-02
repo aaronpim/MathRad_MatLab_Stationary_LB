@@ -3,8 +3,8 @@
 % considering a cuboid domain [-1,1]^3 and then subdivide it into (N-1)^3
 % subcubes. We then iterate the foward Euler process n_iter times.
 
-N = 51;         %Spatial discretisation
-n_iter = 300;   %Maximum number of iterations
+N = 101;         %Spatial discretisation
+n_iter = 600;   %Maximum number of iterations
 x = linspace(-1,1,N);           %1-D domain
                  %Spatial step
 
