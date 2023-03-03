@@ -91,10 +91,12 @@ u = sum(f,3); %Calculate the total dose
 u(not_holes==0)=NaN; %This it make the holes in the domain visible
 %% Plots
 [X,Y] = meshgrid(x,x);
-pcolor(X,Y,u);
+h = pcolor(X,Y,u);
+set(h, 'EdgeColor', 'none');
 hold on
 plot(0.5*cos(linspace(0,2*pi,101))+((x(2)-x(1))/2),0.5*sin(linspace(0,2*pi,101))+((x(2)-x(1))/2),'r-')
 % plot the location of the inclusion
 hold off
 axis equal
+colorbar
 set(gca,'ColorScale','log')
